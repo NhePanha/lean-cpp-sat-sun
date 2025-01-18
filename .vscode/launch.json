@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/ctrcomputer/Library/Mobile Documents/com~apple~CloudDocs/Documents/Full Lessen/C and CPP Programming/2-5",
+      "program": "/Users/ctrcomputer/Library/Mobile Documents/com~apple~CloudDocs/Documents/Full Lessen/C and CPP Programming/2-5/build/Debug/outDebug"
+    }
+  ]
+}
