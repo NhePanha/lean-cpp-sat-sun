@@ -32,4 +32,7 @@ int main()
             cout<<j<<" x "<<i<<" = "<<i*j<<endl;
         }
     }
+    return 0;
 }
+
+// 1. ចូរ​សេរដូដ ដើម្បីរកចំនួនបឋម​(prime number)​និងមិនបឋម​(not prime number)។ 
