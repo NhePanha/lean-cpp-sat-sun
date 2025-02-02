@@ -38,8 +38,8 @@ double CalculateDiscount(){
 }
 double CalculatePayment()
 {
-    dis[i] = CalculateTotal()+CalculateTax()-CalculateDiscount();
-    return dis[i];
+    payment[i] = CalculateTotal()+CalculateTax()-CalculateDiscount();
+    return payment[i];
 }
 void Header()
 {
