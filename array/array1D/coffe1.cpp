@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stdbool.h>
+#include <string.h>
 using namespace std;
 // global variables
 int code[100]; // code[size of array]
@@ -85,6 +86,102 @@ int main()
                 for(i=0;i<n;i++)
                 {
                     Display();
+                }
+            }break;
+            case 3:{
+                int searchid = 0;
+                string searchname;
+                bool check = false;
+                //int check = 0;
+                int op;
+                cout<<"=========[ Search ]========"<<endl;
+                cout<<"[ 1 - Search By ID   ]"<<endl;
+                cout<<"[ 2 - Search By Name ]"<<endl;
+                cout<<"Please Select one option : ";cin>>op;
+                switch(op)
+                {
+                    case 1:{
+                        cout<<"Enter ID To Search : ";cin>>searchid;
+                        if(searchid==0)
+                        {
+                            cout<<"Field ID Null"<<endl;
+                        }
+                        else{
+                            Header();
+                            for(i=0;i<n;i++)
+                            {
+                                if(searchid==code[i])
+                                {
+                                    Display();
+                                    check = true;
+                                }
+                            }
+                            if(check==false)
+                            {
+                                cout<<"Search id Not found!.."<<endl;
+                            }
+                            else
+                            {
+                                cout<<"Search id found..."<<endl;
+                            }
+                        }
+                    }break;
+                    case 2:{
+                        // cout<<"Enter Name To Search : ";cin.ignore();getline(cin,searchname);
+                        if(searchname.empty())
+                        {
+                            cout<<"null"<<endl;
+                        }
+                        else
+                        {
+                            Header();
+                            for(i=0;i<n;i++)
+                            {
+                                if(searchname==name[i])
+                                {
+                                    Display();
+                                    check = true;
+                                }
+                            }
+                            if(check == false)
+                            {
+                                cout<<"search name not found..!!!"<<endl;
+                            }
+                            else
+                            {
+                                cout<<"search name found.."<<endl;
+                            }
+                        }
+                    }break;
+                }
+            }break;
+            case 4:{
+                int updateid = 0;
+                bool check = false;
+                cout<<"=========[ Update ]========="<<endl;
+                cout<<"Enter ID To Update : ";cin>>updateid;
+                if(updateid==0)
+                {
+                    cout<<"Field ID Null"<<endl;
+                }
+                else{
+                    for(i=0;i<n;i++)
+                    {
+                        if(updateid==code[i])
+                        {
+                            AddProduct();
+                            check = true;
+                            break;
+                        }
+                    }
+                    if(check==false)
+                    {
+                        cout<<"Update id Not found!.."<<endl;
+                    }
+                    else
+                    {
+                        cout<<"Update successfully..."<<endl;
+                    }
                 }
             }break;
         }
