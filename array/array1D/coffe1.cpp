@@ -127,7 +127,7 @@ int main()
                         }
                     }break;
                     case 2:{
-                        // cout<<"Enter Name To Search : ";cin.ignore();getline(cin,searchname);
+                        cout<<"Enter Name To Search : ";cin.ignore();getline(cin,searchname);
                         if(searchname.empty())
                         {
                             cout<<"null"<<endl;
@@ -184,6 +184,180 @@ int main()
                     }
                 }
             }break;
+            case 5:{
+                int deleteid = 0;
+                bool check = false;
+                cout<<"=========[ Delete ]========="<<endl;
+                cout<<"Enter ID To Delete : ";cin>>deleteid;
+                if(deleteid==0)
+                {
+                    cout<<"Field ID Null"<<endl;
+                }
+                else 
+                {
+                    for(i=0;i<n;i++)
+                    {
+                        if(deleteid==code[i])
+                        {
+                            for(j=i;j<n-1;j++)
+                            {
+                                code[j] = code[j+1];
+                                name[j] = name[j+1];
+                                price[j] = price[j+1];
+                                qty[j] = qty[j+1];
+                                total[j] = total[j+1];
+                                tax[j] = tax[j+1];
+                                dis[j] = dis[j+1];
+                                payment[j] = payment[j+1];
+                            }
+                            n--;
+                            check = true;
+                            break;
+                        }
+                    }
+                    if(check==false)
+                    {
+                        cout<<"Search id Not found!.."<<endl;
+                    }
+                    else
+                    {
+                        cout<<"Delete successfully..."<<endl;
+                    }
+                }
+            }break;
+            case 6:{
+                int insertid = 0;
+                bool check = false;
+                cout<<"=========[ Insert ]========="<<endl;
+                cout<<"Enter ID To Insert : ";cin>>insertid;
+                if(insertid==0)
+                {
+                    cout<<"Field ID Null"<<endl;
+                }
+                else 
+                {
+                    for(i=0;i<n;i++)
+                    {
+                        if(insertid==code[i])
+                        {
+                            for(j = n ; j>= i ; j--)
+                            {
+                                code[j] = code[j-1];
+                                name[j] = name[j-1];
+                                price[j] = price[j-1];
+                                qty[j] = qty[j-1];
+                                total[j] = total[j-1];
+                                tax[j] = tax[j-1];
+                                dis[j] = dis[j-1];
+                                payment[j] = payment[j-1];
+                            }
+                            n++;
+                            AddProduct();
+                            check = true;
+                            break;
+                        }
+                    }
+                    if(check==false)
+                    {
+                        cout<<"Search id Not found!.."<<endl;
+                    }
+                    else
+                    {
+                        cout<<"Insert Product successfully..."<<endl;
+                    }
+                }
+            }break;
+            case 7:{
+                int op;
+                bool check = true;
+                cout<<"================[ SORT BY ]================"<<endl;
+                cout<<" [ 1 - Sort By Code ]"<<endl;
+                cout<<" [ 2 - Sort By Name ]"<<endl;
+                cout<<"Pease Select one option : ";cin>>op;
+                switch(op){
+                    case 1:{
+                        int n_id;
+                        string n_name;
+                        double n_price,n_total,n_pay,n_tax,n_dis;
+                        int n_qty;
+                        for(i=0;i<n;i++)
+                        {
+                            for(int j=i+1;j<n;j++)
+                            {
+                                if(code[i]>code[j])
+                                {
+                                    n_id = code[i];
+                                    code[i] = code[j];
+                                    code[j] = n_id;
+
+                                    n_name = name[i];
+                                    name[i] = name[j];
+                                    name[j] = n_name;
+
+                                    n_qty = qty[i];
+                                    qty[i] = qty[j];
+                                    qty[j] = n_qty;
+
+                                    n_price = price[i];
+                                    price[i] = price[j];
+                                    price[j] = n_price;
+
+                                    n_total = total[i];
+                                    total[i] = total[j];
+                                    total[j] = n_total;
+
+                                    n_tax = tax[i];
+                                    tax[i] = tax[j];
+                                    tax[j] = n_tax;
+
+                                    n_dis = dis[i];
+                                    dis[i] = dis[j];
+                                    dis[j] = n_dis;
+
+                                    n_pay = payment[i];
+                                    payment[i] = payment[j];
+                                    payment[j] = n_pay;
+                                    check = true;
+                                }
+                            }
+                        }
+                        if(check == false)
+                        {
+                            cout<<"Sorting Not Success.!!!"<<endl;
+                        }
+                        else{
+                            cout<<"Sortign Successfully..."<<endl;
+                        }
+                    }break;
+                    case 2:{
+                        for(i=0;i<n;i++)
+                        {
+                            for(int j=i+1;j<n;j++)
+                            {
+                                if(name[i]>name[j])
+                                {
+                                    swap(code[i],code[j]);
+                                    swap(name[i],name[j]);
+                                    swap(qty[i],qty[j]);
+                                    swap(price[i],price[j]);
+                                    swap(total[i],total[j]);
+                                    swap(tax[i],tax[j]);
+                                    swap(dis[i],dis[j]);
+                                    swap(payment[i],payment[j]);
+                                    check = true;
+                                }
+                            }
+                        }
+                        if(check==false){
+                            cout<<"Sortign not Successfully..."<<endl;
+                        }
+                        else {
+                            cout<<"Sortign Successfully..."<<endl;
+                        }
+                            
+                    }break;
+                }
+            }
         }
     }while(op!=0);
     return 0;
