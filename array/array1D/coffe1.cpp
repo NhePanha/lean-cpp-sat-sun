@@ -33,7 +33,7 @@ double CalculateDiscount(){
     return dis[i] = (t > 0 && t<= 10)? t * 0.1:
     (t > 10 && t<= 20)? t * 0.2:
     (t > 20 && t<= 30)? t * 0.3:
-    (t > 30 && t<= 40)? t * 0.4:
+    (t > 30 && t<= 40)? t * 0.4: 
     (t > 40 && t<= 60)? t * 0.5:
     (t > 60 && t<= 70)? t * 0.6:t * 0.7;
 }
@@ -69,8 +69,8 @@ int main()
         cout<<"[ 5 - Delete Product     ]"<<endl;
         cout<<"[ 6 - Insert Product     ]"<<endl;
         cout<<"[ 7 - Sort Product       ]"<<endl;
-        cout<<"[ 8 - Total Payment      ]"<<endl;
-        cout<<"[ 9 - Add Product        ]"<<endl;
+        cout<<"[ 8 - Add Product        ]"<<endl;
+        cout<<"[ 9 - Total Payment      ]"<<endl;
         cout<<"[ 10- Exit Menu          ]"<<endl;
         cout<<"Please select one option of Menu : ";cin>>op;
         switch(op){
@@ -94,10 +94,10 @@ int main()
                 bool check = false;
                 //int check = 0;
                 int op;
-                cout<<"=========[ Search ]========"<<endl;
-                cout<<"[ 1 - Search By ID   ]"<<endl;
-                cout<<"[ 2 - Search By Name ]"<<endl;
-                cout<<"Please Select one option : ";cin>>op;
+                cout<<"\t\t=========[ Search ]========"<<endl;
+                cout<<"\t\t  [ 1 - Search By ID   ]"<<endl;
+                cout<<"\t\t  [ 2 - Search By Name ]"<<endl;
+                cout<<"\t\tPlease Select one option : ";cin>>op;
                 switch(op)
                 {
                     case 1:{
@@ -271,8 +271,8 @@ int main()
                 int op;
                 bool check = true;
                 cout<<"================[ SORT BY ]================"<<endl;
-                cout<<" [ 1 - Sort By Code ]"<<endl;
-                cout<<" [ 2 - Sort By Name ]"<<endl;
+                cout<<" \t\t[ 1 - Sort By Code ]"<<endl;
+                cout<<" \t\t[ 2 - Sort By Name ]"<<endl;
                 cout<<"Pease Select one option : ";cin>>op;
                 switch(op){
                     case 1:{
@@ -353,11 +353,76 @@ int main()
                         }
                         else {
                             cout<<"Sortign Successfully..."<<endl;
-                        }
-                            
+                        } 
                     }break;
                 }
-            }
+            }break;
+            case 8:{
+                int add;
+                bool check = false;
+                // int check = 0;
+                cout<<"================[ ADD PRODUCT ]================"<<endl;
+                cout<<"Enter Number of Product : ";cin>>add;
+                for(i = n; i < n + add ; i++)
+                {
+                    AddProduct();
+                    check = true;
+                }
+                n += add;
+                if(!check){
+                    cout<<"Add Product not Success"<<endl;
+                }
+                else
+                {
+                    cout<<"Add Product Successfully"<<endl;
+                }
+            }break;
+            case 9:{
+                double total_pay,total_tax,total_dis,total_t;
+                int op;
+                do{
+                    cout<<"\t\t[ 1 - Check Total    ]"<<endl;
+                    cout<<"\t\t[ 2 - Check Tax      ]"<<endl;
+                    cout<<"\t\t[ 3 - Check Discount ]"<<endl;
+                    cout<<"\t\t[ 4 - Check Payment ]"<<endl;
+                    cout<<"Pease Select one option : ";cin>>op;
+                    switch(op){
+                        case 1:{
+                            for(i=0;i<n;i++){
+                                total_t += total[i];
+                            }
+                            cout<<"___________________________"<<endl;
+                            cout<<"Total : "<<total_t<<endl;
+                            cout<<"        Thank You"<<endl;
+                        }break;
+                        case 2:{
+                            for(i=0;i<n;i++){
+                                total_tax += tax[i];
+                            }
+                            cout<<"___________________________"<<endl;
+                            cout<<"Total : "<<total_tax<<endl;
+                            cout<<"        Thank You"<<endl;
+                        }break;
+                        case 3:{
+                            for(i=0;i<n;i++){
+                                total_dis += dis[i];
+                            }
+                            cout<<"___________________________"<<endl;
+                            cout<<"Total : "<<total_dis<<endl;
+                            cout<<"        Thank You"<<endl;
+                        }break;
+                        case 4:{
+                            for(i=0;i<n;i++){
+                                total_pay += payment[i];
+                            }
+                            cout<<"___________________________"<<endl;
+                            cout<<"Total : "<<total_pay<<endl;
+                            cout<<"        Thank You"<<endl;
+                        }break;
+                    }
+                    cout<<"ENTER NUMBER ZERO TO EXIT"<<endl;
+                }while(op!=0);
+            }break;
         }
     }while(op!=0);
     return 0;
