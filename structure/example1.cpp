@@ -18,7 +18,6 @@ int main()
     obj.name = "John Doe";
     obj.gender = "Male";
     obj.salary = 50000.0;
-
     // print values of structure members
     cout << "ID: " << obj.id << endl;
     cout << "Name: " << obj.name << endl;
