@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <vector>
 using namespace std;
-
 struct Movie {
     int id_movie;
     string title_movie;
@@ -12,7 +11,6 @@ struct Movie {
     string release_movie;
     string time_movie;
 };
-
 struct Ticket {
     int row;
     int column;
