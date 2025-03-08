@@ -68,7 +68,6 @@ class Person{
         void setRate(double rate) {
             this->rate = rate;
         }
-        
         int getId() {
             return id;
         }
@@ -189,7 +188,7 @@ int main()
                         cout<<"[7 update age     ]"<<endl;
                         cout<<"[8 update salary  ]"<<endl;
                         cout<<"[9 update hours   ]"<<endl;
-                        cout<<"[10 update rate   ]"<<endl;
+                        cout<<"[10 update rate    ]"<<endl;
                         cout<<"[Plase option to update : ]";cin>>op;
                         switch(op)
                         {
@@ -253,6 +252,20 @@ int main()
                     else {
                         cout<<"Press Enter to Continue...";
                         cin.ignore();cin.get();
+                    }
+                }
+            }break;
+            case 5:{
+                int deleteid;
+                bool check = false;
+                cout<<"Enter ID To Delete : ";cin>>deleteid;
+                for(int i=0;i<persons.size();i++)
+                {
+                    if(persons[i].getId()==deleteid)
+                    {
+                        persons.erase(persons.begin() + i);
+                        check = true;
+                        break;
                     }
                 }
             }break;
