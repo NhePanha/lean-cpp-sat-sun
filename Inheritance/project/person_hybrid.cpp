@@ -16,6 +16,14 @@ class Person{
         int id,age;
         string name,gender,dob,email,phone;
     public:
+        int getId()
+        {
+            return id;
+        }
+        string getName()
+        {
+            return name;
+        }
         void Input()
         {
             cout<<RED<<"==============[ Data ]================="<<endl;
@@ -28,12 +36,12 @@ class Person{
         }
         void Output()
         {
-            cout<<YELLOW<<setw(12)<<id<<
-            setw(12)<<name<<
-            setw(12)<<gender<<
-            setw(12)<<dob<<
-            setw(12)<<email<<
-            setw(12)<<age;
+            cout<<YELLOW<<"\t"<<id<<
+            "\t"<<name<<
+            "\t"<<gender<<
+            "\t"<<dob<<
+            "\t"<<email<<
+            "\t"<<age;
         }
 };
 class DateTime:public Person{
@@ -48,16 +56,16 @@ class DateTime:public Person{
     }
     void ShowDate()
     {
-        cout << setw(2) << setfill('0') << (now->tm_mon + 1) << "/"<< 
-        setw(2) << setfill('0') << now->tm_mday << "/"<< (now->tm_year + 1900);
+        cout << setw(2) << (now->tm_mon + 1) << "/"<< 
+        setw(2)  << now->tm_mday << "/"<< (now->tm_year + 1900);
     }
     void ShowTime()
     {
         Person::Output();
         ShowDate();
-        cout <<"\t"<<setw(2) <<setfill('0') << now->tm_hour << ":"
-              <<setw(2) <<setfill('0') << now->tm_min << ":"
-              <<setw(2) <<setfill('0') << now->tm_sec;
+        cout <<"\t"<<setw(2) << now->tm_hour << ":"
+              <<setw(2) << now->tm_min << ":"
+              <<setw(2) << now->tm_sec;
     }
 };
 class Employee:public DateTime{
@@ -84,14 +92,62 @@ class Employee:public DateTime{
             "\t"<<total<<endl;
         }
 };
-void StuHeader(){}
-void EmpHeader(){}
-class Student:public DateTime{};
+void StuHeader(){
+
+}
+void EmpHeader(){
+    
+}
+class Student:public DateTime{
+    private:
+        double sc1,sc2,sc3;
+        double total,avg;
+        char grade;
+    public:
+        void Input()
+        {
+            DateTime::Input();
+            cout<<"Enter Math : ";cin>>sc1;
+            cout<<"Enter Khmer : ";cin>>sc2;
+            cout<<"Enter English : ";cin>>sc3;
+        }
+        double Total()
+        {
+            total = sc1 + sc2 + sc3;
+            return total;
+        }
+        double Avg()
+        {
+            avg = Total() / 3;
+            return avg;
+        }
+        char Grade()
+        {
+            double a = Avg();
+            return grade = (a>90)? 'A':
+            (a>80)?'B':
+            (a>70)?'C':
+            (a>60)?'D':
+            (a>=50)?'E':'F';
+        }
+        void Output()
+        {
+            DateTime::ShowTime();
+            cout<<setw(12)<<sc1<<
+            setw(12)<<sc2<<
+            setw(12)<<sc3<<
+            setw(12)<<Total()<<
+            setw(12)<<Avg()<<
+            setw(12)<<Grade()<<endl;
+        }
+};
 
 int main()
 {
     vector<Employee> employee;
     Employee emp;
+    vector<Student> student;
+    Student stu;
     int i,j,op;
     do{
         cout<<RED<<"===============[ M E N U ]===================="<<endl;
@@ -125,13 +181,77 @@ int main()
                             {
                                 emp.Output();
                             }
+                        }break;
+                        case 3:{
+                            int searchid;
+                            bool check = false;
+                            cout<<"Enter id to search : ";cin>>searchid;
+                            for(auto emp : employee)
+                            {
+                                if(searchid == emp.getId())
+                                {
+                                    emp.Output();
+                                    check = true;
+                                }
+                            }
+                            if(check)
+                            {
+                                cout<<GREEN<<"Search found..."<<endl;
+                            }
+                            else 
+                            {
+                                cout<<RED<<"Search not found!!"<<endl;
+                            }
                         }
                     }
                 }while(op!=0);
             }break;
             case 2:{
-                int op;
-
+                int op,n,i;
+                do{
+                    cout<<RED<<"===============[ M E N U ]===================="<<endl;
+                    cout<<GREEN<<"[ 1 - INPUT    ]"<<endl;
+                    cout<<GREEN<<"[ 2 - OUTPUT   ]"<<endl;
+                    cout<<GREEN<<"[ 3 - SEARCH   ]"<<endl;
+                    cout<<BLUE<<"Please Select one option : ";cin>>op;
+                    switch(op){
+                        case 1:{
+                            cout<<"Enter Number of Students : ";cin>>n;
+                            for(i=0;i<n;i++)
+                            {
+                                stu.Input();
+                                student.push_back(stu);
+                            }
+                        }break;
+                        case 2:{
+                            for(auto stu : student)
+                            {
+                                stu.Output();
+                            }
+                        }break;
+                        case 3:{
+                            string searchname;
+                            bool check = false;
+                            cout<<"Enter Name to search : ";cin>>searchname;
+                            for(auto stu : student)
+                            {
+                                if(searchname == stu.getName())
+                                {
+                                    stu.Output();
+                                    check = true;
+                                }
+                            }
+                            if(check)
+                            {
+                                cout<<GREEN<<"Search found.."<<endl;
+                            }
+                            else
+                            {
+                                cout<<RED<<"Search not found..!!"<<endl;
+                            }
+                        }break;
+                    }
+                }while(op!=0);
             }
         }
     }while(op!=0);
